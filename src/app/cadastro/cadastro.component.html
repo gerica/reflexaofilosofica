@@ -1,0 +1,72 @@
+<!-- /.row -->
+
+
+<section id="reflexao" class="container content-section text-center">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+
+      <div class="card card-block">
+        <tabset>
+          <tab heading="Cadastro">
+            <form role="form" (submit)="gravar($event)" *ngIf="activeForm">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-header card-default">
+                      Reflexão:
+                    </div>
+                    <div class="card-block bg-white">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <fieldset class="form-group">
+                            <label>Autor:</label>
+                            <input type="text" class="form-control" id="autor" name="autor" [(ngModel)]="reflexao.autor" #autor="ngModel" required>
+                          </fieldset>
+                          <div [hidden]="autor.valid || autor.pristine" class="alert alert-danger">
+                            A autor é obrigatório.
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <fieldset class="form-group">
+                            <label>Titulo:</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="reflexao.titulo" #titulo="ngModel" required>
+                          </fieldset>
+                          <div [hidden]="titulo.valid || titulo.pristine" class="alert alert-danger">
+                            A titulo é obrigatório.
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <fieldset class="form-group">
+                            <label>Conteúdo:</label>
+                            <textarea rows="10" cols="50" class="form-control" id="conteudo" name="conteudo" [(ngModel)]="reflexao.conteudo" #conteudo="ngModel"
+                              required></textarea>
+                          </fieldset>
+                          <div [hidden]="conteudo.valid || conteudo.pristine" class="alert alert-danger">
+                            A conteúdo é obrigatório.
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Gravar</button>
+                    <button *ngIf="reflexao?.id" type="button" class="btn btn-secondary" (click)="novo()">Novo</button>
+                    <button *ngIf="reflexao?.id" type="button" class="btn btn-danger" (click)="showModalExcluir()">Excluir</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </tab>
+          <tab heading="Lista">
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</section>
