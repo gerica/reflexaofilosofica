@@ -1,3 +1,5 @@
+import { AutorService } from './../shared/service/autor.service';
+import { Autor } from './../shared/entidade/autor';
 import { ReflexaoService } from './../shared/service/reflexao.service';
 import { Reflexao } from './../shared/entidade/reflexao';
 import { Component, OnInit } from '@angular/core';
@@ -6,20 +8,21 @@ import { Component, OnInit } from '@angular/core';
   selector: 'ref-fil-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.less'],
-  providers: [ReflexaoService]
+  providers: [ReflexaoService, AutorService]
 })
 export class CadastroComponent implements OnInit {
 
   /*Variaveis*/
-
   activeForm: boolean = true;
   reflexao: Reflexao;
+  autores: Autor[] = [];
 
 
   /**
    * Construtor
    */
-  constructor(private reflexaoService: ReflexaoService) {
+  constructor(private reflexaoService: ReflexaoService,
+    private autorService: AutorService) {
 
   }
 
@@ -28,6 +31,7 @@ export class CadastroComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.reflexao = new Reflexao();
+    this.recuperarAutores();
 
   }
 
@@ -49,7 +53,19 @@ export class CadastroComponent implements OnInit {
 
   public excluir(event: any): void {
     event.preventDefault();
+  }
 
+  public recuperarAutores(): void {
+    this.autorService.recuperarAutores().subscribe(
+      (data: Autor[]) => {
+        this.autores = data;
+      },
+      error => {
+        console.log(error);
+      }
+
+    );
   }
 
 }
+

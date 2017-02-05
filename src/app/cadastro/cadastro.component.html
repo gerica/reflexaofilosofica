@@ -20,7 +20,10 @@
                         <div class="col-sm-6">
                           <fieldset class="form-group">
                             <label>Autor:</label>
-                            <input type="text" class="form-control" id="autor" name="autor" [(ngModel)]="reflexao.autor" #autor="ngModel" required>
+                            <!--<input type="text" class="form-control" id="autor" name="autor" [(ngModel)]="reflexao.autor" #autor="ngModel" required>-->
+                            <select class="form-control" id="autor" name="autor" [(ngModel)]="reflexao.autor" #autor="ngModel" required>
+                              <option *ngFor="let r of autores" [ngValue]="r.$key">{{r.$value}}</option>
+                              </select>
                           </fieldset>
                           <div [hidden]="autor.valid || autor.pristine" class="alert alert-danger">
                             A autor é obrigatório.

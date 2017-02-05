@@ -4,7 +4,8 @@ export class Reflexao {
     //     private conteudo: string) { }
 
     id: number;
-    autor: string;
+    autor: number;
+    autorNome: string;
     titulo: string;
     conteudo: string
 }

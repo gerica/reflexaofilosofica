@@ -21,6 +21,7 @@ import { AngularFireModule } from 'angularfire2';
 import {
   TabsModule
 } from 'ng2-bootstrap';
+import { DropdowDirective } from './dropdow.directive';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDZFCSxIsR-5nRpvsd6DjwfysBeRNyEf1A",
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     SobreComponent,
     ContatoComponent,
     CadastroComponent,
-    SigninComponent
+    SigninComponent,
+    DropdowDirective
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ export const firebaseConfig = {
     routing,
     ReactiveFormsModule,
     TabsModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

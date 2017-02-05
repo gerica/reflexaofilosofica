@@ -19,7 +19,7 @@ const APP_ROUTES: Routes = [
     { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
-export const routing = RouterModule.forRoot(APP_ROUTES);
+export const routing = RouterModule.forRoot(APP_ROUTES, { useHash: true });
 
 
 // canActivate: [AuthGuard]
