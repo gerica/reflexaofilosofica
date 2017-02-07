@@ -7,5 +7,6 @@ export class Reflexao {
     autor: number;
     autorNome: string;
     titulo: string;
-    conteudo: string
+    conteudo: string;
+    conteudoAbrev: string;
 }

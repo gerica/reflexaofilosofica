@@ -1,0 +1,104 @@
+<div class="card card-block">
+	<div class="row">
+		<div class="col-sm-12">
+			<input type="text" name="textoProcurado" class="form-control" placeholder="Filtrar Lembrete..." #textoProcurado (keyup)="0">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="card">
+				<div class="card-header card-default">
+					Reflexões
+				</div>
+				<div class="card-block bg-white">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12">
+							<div class="table-responsive">
+								<table class="table table-hover table-sm">
+									<thead>
+										<tr>
+											<th>Ações</th>
+											<th>Autor</th>
+											<th>Título</th>
+											<th>Conteúdo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- -->
+										<tr *ngFor="let item of reflexoes | filtroReflexao: textoProcurado.value | paginate: {id:'reflexaoLista', itemsPerPage: 10, currentPage: p }"
+											(dblclick)="showModal(item)">
+											<td>
+												<i class="fa fa-eye" aria-hidden="true" title="Visualizar" style="cursor:pointer" (click)="showModal(item)"></i>
+											</td>
+											<td>{{item?.autorNome}}</td>
+											<td>{{item?.titulo}}</td>
+											<td>{{item?.conteudoAbrev}}</td>
+											</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="4">
+												<pagination-controls class="lista-reflexao-pagination" id="reflexaoLista" (pageChange)="p = $event" #api directionLinks="false"
+													maxSize="9" autoHide="true"></pagination-controls>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Modal visualizar -->
+<div bsModal #modalVisualizar="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog ">
+		<div class="modal-content" *ngIf="reflexaoVisualizar">
+			<div class="modal-body">
+					<button type="button" class="close" (click)="modalVisualizar.hide()" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+					</button>
+				<tabset>
+					<tab heading="Reflexão">
+						<div class="row">
+							<div class="col-sm-12 col">
+								<div class="card">
+									<div class="card-header card-default">
+										Autor: {{reflexaoVisualizar.autorNome}}										
+									</div>
+									<div class="card-block bg-white">
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="list-group">
+													<a href="javascript:;" class="list-group-item">
+														<h4 class="list-group-item-heading">{{reflexaoVisualizar.titulo}}</h4>
+														<p class="list-group-item-text">
+															<span> <b>Autor:</b> {{reflexaoVisualizar.autorNome}}<br> </span>															
+															<span><b>Conteúdo:</b> {{reflexaoVisualizar.conteudo}}</span>
+														</p>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</tab>
+				</tabset>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="button" class="btn btn-primary" (click)="getPaginaEditar()">Editar</button>
+						<button type="button" class="btn btn-warning" (click)="modalVisualizar.hide()">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>

@@ -17,11 +17,15 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { SigninComponent } from './signin/signin.component';
 
 import { AngularFireModule } from 'angularfire2';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 import {
-  TabsModule
+  TabsModule,
+  ModalModule
 } from 'ng2-bootstrap';
 import { DropdowDirective } from './dropdow.directive';
+import { ListaComponent } from './cadastro/lista/lista.component';
+import { ReflexaoPipe } from './shared/pipe/reflexao.pipe';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDZFCSxIsR-5nRpvsd6DjwfysBeRNyEf1A",
@@ -41,7 +45,9 @@ export const firebaseConfig = {
     ContatoComponent,
     CadastroComponent,
     SigninComponent,
-    DropdowDirective
+    DropdowDirective,
+    ListaComponent,
+    ReflexaoPipe
   ],
   imports: [
     BrowserModule,
@@ -50,9 +56,12 @@ export const firebaseConfig = {
     routing,
     ReactiveFormsModule,
     TabsModule.forRoot(),
+    ModalModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
+    Ng2PaginationModule
   ],
   providers: [AuthService, AuthGuard],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'ref-fil-signin',
   templateUrl: './signin.component.html',
@@ -17,24 +18,18 @@ export class SigninComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
-    private route: Router) { }
+    private route: Router) {
 
+  }
 
   onSignin(event: any) {
     event.preventDefault();
 
-    this.authService.signinUser(this.myForm.value)
+    this.authService.login(this.myForm.value)
       .then(
       result => {
-        console.log(result);
-        // localStorage.setItem('user', result.token);
         this.route.navigate(['cadastro']);
-      },
-      error => {
-        console.log(error);
-      }
-      );
-    // this.route.navigate(['protected']);
+      }, error => console.log(error));
   }
 
   ngOnInit(): any {
@@ -43,4 +38,5 @@ export class SigninComponent implements OnInit {
       password: ['', Validators.required],
     });
   }
+
 }
