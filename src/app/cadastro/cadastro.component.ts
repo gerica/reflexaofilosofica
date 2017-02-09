@@ -1,3 +1,4 @@
+import { AlertaUtil } from './../shared/component/alerta-util';
 import { AutorService } from './../shared/service/autor.service';
 import { Autor } from './../shared/entidade/autor';
 import { ReflexaoService } from './../shared/service/reflexao.service';
@@ -13,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 export class CadastroComponent implements OnInit {
 
   /*Variaveis*/
+  alertaUtil: AlertaUtil = new AlertaUtil();
   activeForm: boolean = true;
   reflexao: Reflexao;
   autores: Autor[] = [];
@@ -47,6 +49,11 @@ export class CadastroComponent implements OnInit {
   public gravar(event: any): void {
     event.preventDefault();
     this.reflexaoService.gravar(this.reflexao);
+    this.alertaUtil.addMessage({
+      type: 'success',
+      closable: true,
+      msg: `Operação realizada com sucesso`
+    });
     this.novo();
   }
 
@@ -58,7 +65,7 @@ export class CadastroComponent implements OnInit {
     this.autorService.recuperarAutores().subscribe(
       (data: Autor[]) => {
         this.autores = data;
-        
+
       },
       error => {
         console.log(error);

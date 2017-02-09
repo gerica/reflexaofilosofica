@@ -1,5 +1,8 @@
 <div class="reflexao-container">
   <section id="signin" class="container content-section text-center signin">
+    <alert *ngFor="let alert of alertaUtil.alerts; let i = index" [type]="alert.type" dismissible="true" (close)="alertaUtil.closeAlert(i)">
+      {{ alert?.msg }}
+    </alert>
     <div class="row">
       <h3>Realizar Login</h3>
       <form [formGroup]="myForm" (submit)="onSignin($event)">

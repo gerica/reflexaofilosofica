@@ -1,9 +1,8 @@
+import { AlertaUtil } from './../shared/component/alerta-util';
 import { AuthService } from './../shared/service/auth.service';
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'ref-fil-signin',
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
+  alertaUtil: AlertaUtil = new AlertaUtil();
   myForm: FormGroup;
   error = false;
   errorMessage = '';
@@ -29,7 +29,14 @@ export class SigninComponent implements OnInit {
       .then(
       result => {
         this.route.navigate(['cadastro']);
-      }, error => console.log(error));
+
+      }, error => {
+        this.alertaUtil.addMessage({
+          type: 'danger',
+          closable: true,
+          msg: error
+        });
+      });
   }
 
   ngOnInit(): any {

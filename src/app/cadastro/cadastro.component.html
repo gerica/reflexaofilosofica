@@ -2,8 +2,11 @@
 
 
 <section id="reflexao" class="container content-section text-center">
+<alert *ngFor="let alert of alertaUtil.alerts; let i = index" [type]="alert.type" dismissible="true" (close)="alertaUtil.closeAlert(i)">
+  {{ alert?.msg }}
+</alert>
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
+    <div class="col-lg-10 col-lg-offset-2">
 
       <div class="card card-block">
         <tabset>

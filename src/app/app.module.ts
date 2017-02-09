@@ -21,7 +21,8 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 
 import {
   TabsModule,
-  ModalModule
+  ModalModule,
+  AlertModule
 } from 'ng2-bootstrap';
 import { DropdowDirective } from './dropdow.directive';
 import { ListaComponent } from './cadastro/lista/lista.component';
@@ -57,6 +58,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     TabsModule.forRoot(),
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     Ng2PaginationModule
   ],
