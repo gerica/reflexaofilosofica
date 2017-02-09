@@ -35,7 +35,8 @@ export class ReflexaoService {
 
 
   public gravar(reflexao: Reflexao): void {
-    // console.log(this.reflexoes);
+    reflexao.autor = parseInt(reflexao.autor+"");
+    console.log(reflexao);
     this.reflexoes.push(reflexao);
   }
 

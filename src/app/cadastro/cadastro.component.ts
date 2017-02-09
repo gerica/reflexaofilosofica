@@ -48,7 +48,6 @@ export class CadastroComponent implements OnInit {
     event.preventDefault();
     this.reflexaoService.gravar(this.reflexao);
     this.novo();
-
   }
 
   public excluir(event: any): void {
@@ -59,6 +58,7 @@ export class CadastroComponent implements OnInit {
     this.autorService.recuperarAutores().subscribe(
       (data: Autor[]) => {
         this.autores = data;
+        
       },
       error => {
         console.log(error);
